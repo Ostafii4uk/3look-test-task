@@ -19,10 +19,6 @@ body {
   max-height: 100vh;
 }
 
-header {
-  max-width: var(--max-width);
-}
-
 main {
   max-width: var(--max-width);
 }
