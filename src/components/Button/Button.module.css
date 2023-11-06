@@ -1,0 +1,36 @@
+.button {
+  width: 640px;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.create {
+  background: #884DFE;
+}
+
+.create:hover {
+  background: linear-gradient(#A139FD, #50BDFC);
+}
+
+.save {
+  background-color: #45CB54;
+}
+
+.cancel {
+  background-color: transparent;
+  border: 3px solid #424454
+}
+
+.text {
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  color: #FFFFFF;
+}
