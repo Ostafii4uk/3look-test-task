@@ -1,8 +1,7 @@
-import type { Metadata } from 'next'
+import CustomHeader from '@/components/CustomHeader/CustomHeader'
+import { ReactNode } from 'react'
 import localFont from 'next/font/local'
-import './globals.css'
-import CustomHeader from '@/components/Header/CustomHeader'
-
+  
 const satoshi = localFont({
   src: [
     {
@@ -33,22 +32,15 @@ const satoshi = localFont({
   ]
 })
 
-export const metadata: Metadata = {
-  title: '3look.io – Test task',
-  description: '3look.io – Test task',
+interface MyProps {
+  children?: ReactNode;
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Layout({ children }: MyProps) {
   return (
-    <html lang="en">
-      <body className={satoshi.className}>
-        <CustomHeader />
-        {children}
-      </body>
-    </html>
+    <>
+      <CustomHeader />
+      <main className={satoshi.className}>{children}</main>
+    </>
   )
 }

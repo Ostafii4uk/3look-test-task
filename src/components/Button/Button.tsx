@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 type ButtonType = 'create' | 'save' | 'cancel'
 
-const Button: React.FC<{type: ButtonType}> = ({type}) => {
+const Button: React.FC<{type: ButtonType, clickFnc: Function}> = ({type, clickFnc}) => {
   const getButtonText = () => {
     if (type === 'save') {
       return 'save changes'
@@ -13,12 +13,11 @@ const Button: React.FC<{type: ButtonType}> = ({type}) => {
       return 'create category'
     } else {
       return type
-
     }
   }
 
   return (
-    <button className={`${Styles.button} ${Styles[type]}`}>
+    <button className={`${Styles.button} ${Styles[type]}`} onClick={() => clickFnc()}>
       {type === 'create' && <Image src={plusIcon} alt='plus-icon' />}
       {type === 'save' && <Image src={checkIcon} alt='check-icon' />}
       <span className={Styles.text}>{getButtonText()}</span>
