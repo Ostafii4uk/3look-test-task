@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
+import CustomHeader from '@/components/Header/CustomHeader'
 
 const satoshi = localFont({
   src: [
@@ -44,7 +45,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={satoshi.className}>{children}</body>
+      <body className={satoshi.className}>
+        <CustomHeader />
+        {children}
+      </body>
     </html>
   )
 }

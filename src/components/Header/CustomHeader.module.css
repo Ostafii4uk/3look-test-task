@@ -1,0 +1,49 @@
+.header {
+  width: 100%;
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.search {
+  position: relative;
+  --search-background-color: #30313C;
+}
+
+.search::after {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 100;
+  content: url(../../../public/assets/svgs/search.svg);
+  background-color: var(--search-background-color);
+}
+
+.inputSearch {
+  width: 380px;
+  height: 40px;
+  padding: 15px 20px;
+  border-radius: 4px;
+  background-color: var(--search-background-color);
+  color: #9B9D9F;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  border: none;
+}
