@@ -1,7 +1,6 @@
 import Syles from './CustomHeader.module.css'
 import Image from 'next/image'
 import logoIcon from '../../../public/assets/svgs/logo.svg'
-import searchIcon from '../../../public/assets/svgs/search.svg'
 
 const CustomHeader: React.FC<{}> = ({}) => {
   return (
