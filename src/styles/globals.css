@@ -11,9 +11,10 @@
 }
 
 body {
+  position: relative;
   background: var(--background-color);
   color: var(--text-color);
-  max-height: 100vh;
+  height: 100vh;
 }
 
 main {
