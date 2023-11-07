@@ -19,8 +19,28 @@ export default function categoriesAPI (req: any, res: any) {
       title: '',
       show: false
     }
-    categories.push(category)
 
+    categories.push(category)
+    res.status(201).json(categories)
+  } else if (req.method === "PATCH") {
+    const udpatedCategory: Category = req.body
+    const updatedCategories = categories.map((category: Category) => {
+      if (category.id === udpatedCategory.id) {
+        return {
+          ...category,
+          show: udpatedCategory.show
+        }
+      } else {
+        return category
+      }
+    })
+
+    categories = updatedCategories
+    res.status(201).json(categories)
+  } else if (req.method === "DELETE") {
+    const categoryID: string = req.body.id
+
+    categories = categories.filter(category => category.id !== categoryID)
     res.status(201).json(categories)
   }
 }

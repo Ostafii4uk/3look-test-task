@@ -8,30 +8,28 @@ const Categories: React.FC<{}> = ({}) => {
   const [categories, setCategories] = useState<Category[]>([])
 
   const getCategories = async () => {
-    let response = await fetch("api/categories")
-    setCategories(await response.json())
+    const response = await fetch("api/categories")
+    response.json()
+      .then(data => setCategories(data))
   }
 
   const createNewCategory = async () => {
-    let response = await fetch("/api/categories", {
+    const response = await fetch("/api/categories", {
       method: "POST"
     })
-    setCategories(await response.json())
+    response.json()
+      .then(data => setCategories(data))
   }
 
   useEffect(() => {
     getCategories()
   }, [])
 
-  return (  
+  return (
     <div className={Styles.categories}>
       <Button type='create' clickFnc={createNewCategory} />
       <ul className={Styles.categoriesList}>
-        {categories.map(category => {
-          return (
-            <CategoryComponent category={category} />
-          )
-        })}
+        {categories.map(category => <CategoryComponent category={category} setCategories={setCategories} key={category.id} />)}
       </ul>
     </div>
   )

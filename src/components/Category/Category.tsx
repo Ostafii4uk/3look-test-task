@@ -4,18 +4,50 @@ import { Category } from '@/types/categories'
 import deleteIcon from '../../../public/assets/svgs/delete.svg'
 import Image from 'next/image'
 
-const Category: React.FC<{ category: Category }> = ({ category }) => {
+const Category: React.FC<{ category: Category, setCategories: Function }> = ({ category, setCategories }) => {
   const [title, setTitle] = useState<string>(category.title)
-  const [checkbox, setCheckbox] = useState<boolean>(category.show)
+
+  const updateCategory = async (status: boolean) => {
+    const updatedCategory = {
+      id: category.id,
+      show: status
+    }
+    const response = await fetch("/api/categories", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        ...updatedCategory
+      })
+    })
+    setCategories(await response.json())
+  }
+
+  const deleteCategory = async (id: string) => {
+    const updatedCategory = {
+      id: category.id,
+    }
+    const response = await fetch("/api/categories", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id
+      })
+    })
+    setCategories(await response.json())
+  }
 
   return (
     <div className={Styles.category}>
       <input className={Styles.title} type="text" value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Enter Category Name' />
       <div className={Styles.switcher}>
-        <input className={Styles.checkbox} type="checkbox" name="show-category" id="show-category" checked={checkbox} onChange={(event) => setCheckbox(event.target.checked)} />
-        <label className={Styles.label} htmlFor="show-category"></label>
+        <input className={Styles.checkbox} type="checkbox" name="show-category" id={category.id} checked={category.show} onChange={(event) => updateCategory(event.target.checked)} />
+        <label className={Styles.label} htmlFor={category.id}></label>
       </div>
-      <Image src={deleteIcon} alt='delete-icon' />
+      <Image src={deleteIcon} alt='delete-icon' onClick={() => deleteCategory(category.id)} />
     </div>
   )
 }
