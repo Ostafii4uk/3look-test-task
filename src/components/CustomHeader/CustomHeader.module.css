@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 18px;
 }
 
 .logo {
@@ -31,6 +32,8 @@
 .search {
   position: relative;
   --search-background-color: #30313C;
+  width: 100%;
+  max-width: 380px;
 }
 
 .search::after {
@@ -46,7 +49,7 @@
 }
 
 .inputSearch {
-  width: 380px;
+  width: 100%;
   height: 40px;
   padding: 15px 20px;
   border-radius: 4px;

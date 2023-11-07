@@ -28,7 +28,8 @@ export default function categoriesAPI (req: any, res: any) {
       if (category.id === udpatedCategory.id) {
         return {
           ...category,
-          show: udpatedCategory.show
+          show: udpatedCategory.show,
+          title: udpatedCategory.title
         }
       } else {
         return category

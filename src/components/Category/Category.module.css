@@ -86,3 +86,23 @@
 .label:active::before {
 	width: 35px;
 }
+
+.buttonsWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	position: fixed;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 20000;
+	background-color: #2E2F3C;
+}
+
+.buttons {
+	width: 100%;
+	max-width: var(--max-width);
+	display: flex;
+	gap: 25px;
+}

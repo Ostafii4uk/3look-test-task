@@ -4,15 +4,19 @@ import { Category } from '@/types/categories'
 import deleteIcon from '../../../public/assets/svgs/delete.svg'
 import Image from 'next/image'
 import Dialog from '../Dialog/Dialog'
+import Button from '../Button/Button'
 
 const Category: React.FC<{ category: Category, setCategories: Function }> = ({ category, setCategories }) => {
   const [title, setTitle] = useState<string>(category.title)
+  const [showCategory, setShowCategory] = useState<boolean>(category.show)
   const [showDialog, setShowDialog] = useState<boolean>(false)
+  const [showButtons, setShowButtons] = useState<boolean>(false)
 
-  const updateCategory = async (status: boolean) => {
+  const updateCategory = async () => {
     const updatedCategory = {
       id: category.id,
-      show: status
+      title: title,
+      show: showCategory
     }
     const response = await fetch("/api/categories", {
       method: "PATCH",
@@ -24,6 +28,7 @@ const Category: React.FC<{ category: Category, setCategories: Function }> = ({ c
       })
     })
     setCategories(await response.json())
+    setShowButtons(false)
   }
 
   const deleteCategory = async () => {
@@ -37,6 +42,7 @@ const Category: React.FC<{ category: Category, setCategories: Function }> = ({ c
       })
     })
     setCategories(await response.json())
+    hideDialogHandler()
   }
 
   const showDialogHandler = () => {
@@ -51,15 +57,23 @@ const Category: React.FC<{ category: Category, setCategories: Function }> = ({ c
 
   return (
     <>
-    {showDialog && <Dialog closeFnc={() => hideDialogHandler()} submitFnc={deleteCategory} />}
+    {showDialog && <Dialog closeFnc={hideDialogHandler} submitFnc={deleteCategory} />}
     <div className={Styles.category}>
-      <input className={Styles.title} type="text" value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Enter Category Name' />
-      <div className={Styles.switcher}>
-        <input className={Styles.checkbox} type="checkbox" name="show-category" id={category.id} checked={category.show} onChange={(event) => updateCategory(event.target.checked)} />
+      <input className={Styles.title} onClick={() => setShowButtons(true)} type="text" value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Enter Category Name' />
+      <div className={Styles.switcher} onClick={() => setShowButtons(true)}>
+        <input className={Styles.checkbox} type="checkbox" name="show-category" id={category.id} checked={showCategory} onChange={(event) => setShowCategory(event.target.checked)} />
         <label className={Styles.label} htmlFor={category.id}></label>
       </div>
       <Image src={deleteIcon} alt='delete-icon' onClick={() => showDialogHandler()} />
     </div>
+    {showButtons &&
+     <div className={Styles.buttonsWrapper}>
+       <div className={Styles.buttons}>
+        <Button type='save' clickFnc={() => updateCategory()} />
+        <Button type='cancel' clickFnc={() => setShowButtons(false)} />
+      </div>
+     </div>
+    }
     </>
   )
 }
