@@ -26,3 +26,9 @@ main {
   height: 100%;
   overflow: hidden;
 }
+
+input,
+button,
+a {
+  font-family: inherit;
+}

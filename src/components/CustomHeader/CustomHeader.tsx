@@ -4,7 +4,7 @@ import logoIcon from '../../../public/assets/svgs/logo.svg'
 
 const CustomHeader: React.FC<{}> = ({}) => {
   return (
-    <header className={Syles.header}>
+    <div className={Syles.header}>
       <div className={Syles.headerContainer}>
         <div className={Syles.logo}>
           <Image src={logoIcon} alt='3look' priority={true} />
@@ -14,7 +14,7 @@ const CustomHeader: React.FC<{}> = ({}) => {
           <input type="text" className={Syles.inputSearch} placeholder='Search' />
         </div>
       </div>
-    </header>
+    </div>
   )
 }
 
