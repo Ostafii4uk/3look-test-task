@@ -1,5 +1,6 @@
 export interface Category {
   id: string,
   title: string,
-  show: boolean
+  show: boolean,
+  isNotDelete?: boolean
 }

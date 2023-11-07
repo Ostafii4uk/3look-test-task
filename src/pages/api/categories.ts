@@ -6,7 +6,8 @@ let categories: Category[] = [
   {
     id: '1',
     title: 'Other',
-    show: true
+    show: true,
+    isNotDelete: true
   }
 ]
 

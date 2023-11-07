@@ -59,12 +59,12 @@ const Category: React.FC<{ category: Category, setCategories: Function }> = ({ c
     <>
     {showDialog && <Dialog closeFnc={hideDialogHandler} submitFnc={deleteCategory} />}
     <div className={Styles.category}>
-      <input className={Styles.title} onClick={() => setShowButtons(true)} type="text" value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Enter Category Name' />
+      <input className={`${Styles.title} ${!category.show && Styles.titleHidden}`} onClick={() => setShowButtons(true)} type="text" value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Enter Category Name' />
       <div className={Styles.switcher} onClick={() => setShowButtons(true)}>
         <input className={Styles.checkbox} type="checkbox" name="show-category" id={category.id} checked={showCategory} onChange={(event) => setShowCategory(event.target.checked)} />
         <label className={Styles.label} htmlFor={category.id}></label>
       </div>
-      <Image src={deleteIcon} alt='delete-icon' onClick={() => showDialogHandler()} />
+      {!category.isNotDelete && <Image className={Styles.deleteButton} src={deleteIcon} alt='delete-icon' onClick={() => showDialogHandler()} />}
     </div>
     {showButtons &&
      <div className={Styles.buttonsWrapper}>

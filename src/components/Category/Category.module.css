@@ -23,6 +23,10 @@
   color: #FFFFFF;
 }
 
+.titleHidden {
+	color: #696969;
+}
+
 .checkbox {
 	display: none;
 }
@@ -92,6 +96,15 @@
 
 .label:active::before {
 	width: 35px;
+}
+
+.deleteButton {
+	transition: all 0.3s ease-in-out;
+}
+
+.deleteButton:hover {
+	cursor: pointer;
+	filter: brightness(200%);
 }
 
 .buttonsWrapper {
