@@ -21,3 +21,8 @@ main {
   margin: 0 auto;
   max-width: var(--max-width);
 }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

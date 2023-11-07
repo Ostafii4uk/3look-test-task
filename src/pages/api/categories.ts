@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 let categories: Category[] = [
   {
     id: '1',
-    title: 'First Category',
+    title: 'Other',
     show: true
   }
 ]

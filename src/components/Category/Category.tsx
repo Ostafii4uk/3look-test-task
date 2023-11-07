@@ -39,16 +39,26 @@ const Category: React.FC<{ category: Category, setCategories: Function }> = ({ c
     setCategories(await response.json())
   }
 
+  const showDialogHandler = () => {
+    document.body.classList.add("stop-scrolling")
+    setShowDialog(true)
+  }
+
+  const hideDialogHandler = () => {
+    document.body.classList.remove("stop-scrolling")
+    setShowDialog(false)
+  }
+
   return (
     <>
-    {showDialog && <Dialog closeFnc={() => setShowDialog(false)} submitFnc={deleteCategory} />}
+    {showDialog && <Dialog closeFnc={() => hideDialogHandler()} submitFnc={deleteCategory} />}
     <div className={Styles.category}>
       <input className={Styles.title} type="text" value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Enter Category Name' />
       <div className={Styles.switcher}>
         <input className={Styles.checkbox} type="checkbox" name="show-category" id={category.id} checked={category.show} onChange={(event) => updateCategory(event.target.checked)} />
         <label className={Styles.label} htmlFor={category.id}></label>
       </div>
-      <Image src={deleteIcon} alt='delete-icon' onClick={() => setShowDialog(true)} />
+      <Image src={deleteIcon} alt='delete-icon' onClick={() => showDialogHandler()} />
     </div>
     </>
   )
