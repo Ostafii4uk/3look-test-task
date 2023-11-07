@@ -2,9 +2,6 @@
   width: 100%;
   padding: 18px 18px;
   border-bottom: 1px solid #313442;
-  position: sticky;
-  top: 0;
-  z-index: 10000;
   background: var(--background-color);
 }
 
