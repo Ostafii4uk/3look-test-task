@@ -1,6 +1,8 @@
+import Styles from './Categories.module.css'
 import { useEffect, useState } from 'react'
 import Button from '../Button/Button'
 import { Category } from '@/types/categories'
+import CategoryComponent from '@/components/Category/Category'
 
 const Categories: React.FC<{}> = ({}) => {
   const [categories, setCategories] = useState<Category[]>([])
@@ -22,12 +24,12 @@ const Categories: React.FC<{}> = ({}) => {
   }, [])
 
   return (  
-    <div>
+    <div className={Styles.categories}>
       <Button type='create' clickFnc={createNewCategory} />
-      <ul>
+      <ul className={Styles.categoriesList}>
         {categories.map(category => {
           return (
-            <li>{category.id}</li>
+            <CategoryComponent category={category} />
           )
         })}
       </ul>
