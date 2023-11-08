@@ -1,6 +1,5 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import CustomHeader from '@/components/CustomHeader/CustomHeader'
 import localFont from 'next/font/local'
 
 const satoshi = localFont({
@@ -35,13 +34,8 @@ const satoshi = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <header className={satoshi.className}>
-        <CustomHeader />
-      </header>
-      <main className={satoshi.className}>
-        <Component {...pageProps} />
-      </main>
-    </>
+    <main className={satoshi.className}>
+      <Component {...pageProps} />
+    </main>
   )
 }

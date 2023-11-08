@@ -1,7 +1,8 @@
 .home {
-  padding: 40px 18px 95px;
+  padding: 0 18px 95px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 40px;
 }
