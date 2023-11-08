@@ -11,3 +11,7 @@
 .categories {
   padding: 0 18px;
 }
+
+.categoriesList {
+  list-style: none;
+}

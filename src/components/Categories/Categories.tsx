@@ -10,8 +10,12 @@ const Categories: React.FC<{}> = ({}) => {
   const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
 
   const searchCategories = (param: string) => {
-    const result = categories.filter(category => category.title.toLowerCase().includes(param.toLowerCase()))
-    setFilteredCategories(result)
+    if (param === '') {
+      setFilteredCategories(categories)
+    } else {
+      const result = categories.filter(category => category.title.toLowerCase().includes(param.toLowerCase()))
+      setFilteredCategories(result)
+    }
   }
 
   const getCategories = async () => {
@@ -44,6 +48,7 @@ const Categories: React.FC<{}> = ({}) => {
       <div className={Styles.categories}>
         <Button type='create' clickFnc={createNewCategory} />
         <ul className={Styles.categoriesList}>
+          {!filteredCategories.length && <li>Not found Categories</li>}
           {filteredCategories.map(category => <CategoryComponent category={category} setCategories={setCategories} key={category.id} />)}
         </ul>
       </div>
