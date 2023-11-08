@@ -1,0 +1,17 @@
+.categories,
+.categoriesList {
+  max-width: var(--max-width);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.categories {
+  padding: 0 18px;
+}
+
+.categoriesList {
+  list-style: none;
+}

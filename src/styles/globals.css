@@ -1,0 +1,39 @@
+:root {
+  --background-color: #1E1E27;
+  --text-color: #FFFFFF;
+  --max-width: 1300px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  background: var(--background-color);
+  color: var(--text-color);
+  height: 100vh;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+main {
+  margin: 0 auto;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+input,
+button,
+a {
+  font-family: inherit;
+}
