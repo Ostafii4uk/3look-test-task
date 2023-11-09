@@ -54,7 +54,7 @@ const Categories: React.FC<{}> = ({}) => {
         <ul className={Styles.categoriesList}>
           {loading && <Loader />}
           {!loading && !filteredCategories.length && <li>Categories not found</li>}
-          {!loading && filteredCategories.map(category => <CategoryComponent category={category} setCategories={setCategories} key={category.id} />)}
+          {!loading && filteredCategories.map(category => <CategoryComponent category={category} setCategories={setCategories} setFilteredCategories={setFilteredCategories} key={category.id} />)}
         </ul>
       </div>
     </>
