@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Dialog from '../Dialog/Dialog'
 import Button from '../Button/Button'
 
-const Category: React.FC<{ category: Category, setCategories: Function }> = ({ category, setCategories }) => {
+const Category: React.FC<{category: Category, setCategories: Function, setFilteredCategories: Function}> = ({ category, setCategories, setFilteredCategories }) => {
   const [title, setTitle] = useState<string>(category.title)
   const [showCategory, setShowCategory] = useState<boolean>(category.show)
   const [showDialog, setShowDialog] = useState<boolean>(false)
@@ -41,7 +41,9 @@ const Category: React.FC<{ category: Category, setCategories: Function }> = ({ c
         id: category.id,
       })
     })
-    setCategories(await response.json())
+    const categories = await response.json()
+    setCategories(categories)
+    setFilteredCategories(categories)
     hideDialogHandler()
   }
 
