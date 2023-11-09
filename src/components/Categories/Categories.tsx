@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import Button from '../Button/Button'
 import { Category } from '@/types/categories'
 import CategoryComponent from '@/components/Category/Category'
-import CustomHeader from '../CustomHeader/CustomHeader'
+import CustomHeader from '@/components/CustomHeader/CustomHeader'
+import Loader from '@/components/Loader/Loader'
 
 const Categories: React.FC<{}> = ({}) => {
   const [categories, setCategories] = useState<Category[]>([])
   const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   const searchCategories = (param: string) => {
     if (param === '') {
@@ -19,11 +21,13 @@ const Categories: React.FC<{}> = ({}) => {
   }
 
   const getCategories = async () => {
+    setLoading(true)
     const response = await fetch("api/categories")
     response.json()
       .then(data => {
         setCategories(data)
         setFilteredCategories(data)
+        setLoading(false)
       })
   }
 
@@ -48,8 +52,9 @@ const Categories: React.FC<{}> = ({}) => {
       <div className={Styles.categories}>
         <Button type='create' clickFnc={createNewCategory} />
         <ul className={Styles.categoriesList}>
-          {!filteredCategories.length && <li>Not found Categories</li>}
-          {filteredCategories.map(category => <CategoryComponent category={category} setCategories={setCategories} key={category.id} />)}
+          {loading && <Loader />}
+          {!loading && !filteredCategories.length && <li>Categories not found</li>}
+          {!loading && filteredCategories.map(category => <CategoryComponent category={category} setCategories={setCategories} key={category.id} />)}
         </ul>
       </div>
     </>
