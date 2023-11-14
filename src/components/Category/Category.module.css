@@ -1,4 +1,5 @@
 .category {
+	margin-bottom: 12px;
   padding: 12px 20px;
   width: 100%;
   max-width: 640px;
@@ -6,6 +7,7 @@
   border: 2px solid #323443;
   background: #24252E;
   display: flex;
+	align-items: center;
   gap: 20px;
 }
 
@@ -125,4 +127,12 @@
 	max-width: var(--max-width);
 	display: flex;
 	gap: 25px;
+}
+
+.dragAndDropButton {
+	transition: all 0.3s ease-in-out;
+}
+
+.dragAndDropButtonActive {
+	filter: brightness(200%);
 }
