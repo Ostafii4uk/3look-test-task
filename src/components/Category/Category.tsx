@@ -2,11 +2,13 @@ import Styles from './Category.module.css'
 import { useState } from 'react'
 import { Category } from '@/types/categories'
 import deleteIcon from '../../../public/assets/svgs/delete.svg'
+import dragAndDropIcon from '../../../public/assets/svgs/drag.svg'
 import Image from 'next/image'
 import Dialog from '../Dialog/Dialog'
 import Button from '../Button/Button'
+import { DraggableStateSnapshot } from 'react-beautiful-dnd'
 
-const Category: React.FC<{category: Category, setCategories: Function, setFilteredCategories: Function}> = ({ category, setCategories, setFilteredCategories }) => {
+const Category: React.FC<{category: Category, setCategories: Function, setFilteredCategories: Function, snapshot: DraggableStateSnapshot}> = ({ category, setCategories, setFilteredCategories, snapshot }) => {
   const [title, setTitle] = useState<string>(category.title)
   const [showCategory, setShowCategory] = useState<boolean>(category.show)
   const [showDialog, setShowDialog] = useState<boolean>(false)
@@ -67,6 +69,7 @@ const Category: React.FC<{category: Category, setCategories: Function, setFilter
         <label className={Styles.label} htmlFor={category.id}></label>
       </div>
       {!category.isNotDelete && <Image className={Styles.deleteButton} src={deleteIcon} alt='delete-icon' onClick={() => showDialogHandler()} />}
+      <Image className={`${Styles.dragAndDropButton} ${snapshot.isDragging && Styles.dragAndDropButtonActive}`} src={dragAndDropIcon} alt='drag-and-drop-icon' />
     </div>
     {showButtons &&
      <div className={Styles.buttonsWrapper}>

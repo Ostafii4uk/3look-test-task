@@ -1,11 +1,19 @@
+.createButtonWrapper {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
 .categories,
 .categoriesList {
-  max-width: var(--max-width);
+  max-width: 640px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+}
+
+.categoryConteiner {
+  width: 100%;
 }
 
 .categories {
@@ -14,4 +22,8 @@
 
 .categoriesList {
   list-style: none;
+}
+
+.categoriesList:first-child {
+	margin-top: 12px;
 }
