@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 let categories: Category[] = [
   {
-    id: '1',
+    id: uuidv4(),
     title: 'Other',
     show: true,
     isNotDelete: true
@@ -17,14 +17,14 @@ export default function categoriesAPI (req: any, res: any) {
   }
   
   if (req.method === "POST") {
-    const category = {
+    const category: Category = {
       id: uuidv4(),
       title: '',
       show: false
     }
 
     categories.push(category)
-    res.status(201).json(categories)
+    res.status(201).json(category)
   }
   
   if (req.method === "PATCH") {
