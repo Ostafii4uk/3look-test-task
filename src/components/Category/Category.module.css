@@ -11,9 +11,9 @@
   gap: 20px;
 }
 
-@media (max-width: 350px) {
+@media (max-width: 370px) {
 	.category {
-		gap: 10px;
+		gap: 5px;
 		padding: 12px 10px;
 	}
 }
@@ -106,33 +106,5 @@
 
 .deleteButton:hover {
 	cursor: pointer;
-	filter: brightness(200%);
-}
-
-.buttonsWrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 20px;
-	position: fixed;
-	right: 0;
-	left: 0;
-	bottom: 0;
-	z-index: 20000;
-	background-color: #2E2F3C;
-}
-
-.buttons {
-	width: 100%;
-	max-width: var(--max-width);
-	display: flex;
-	gap: 25px;
-}
-
-.dragAndDropButton {
-	transition: all 0.3s ease-in-out;
-}
-
-.dragAndDropButtonActive {
 	filter: brightness(200%);
 }
