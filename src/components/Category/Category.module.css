@@ -29,6 +29,10 @@
 	color: #696969;
 }
 
+.titleWarning::placeholder {
+	color: #FF5B5B;
+}
+
 .checkbox {
 	display: none;
 }
@@ -106,5 +110,13 @@
 
 .deleteButton:hover {
 	cursor: pointer;
+	filter: brightness(200%);
+}
+
+.dragAndDropButton {
+	transition: all 0.3s ease-in-out;
+}
+
+.dragAndDropButtonActive {
 	filter: brightness(200%);
 }

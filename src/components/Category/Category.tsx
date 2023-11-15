@@ -13,14 +13,16 @@ const Category: React.FC<{
   setCategories: Function,
   setFilteredCategories: Function,
   snapshot: DraggableStateSnapshot,
-  setShowButtons: Function
+  setShowButtons: Function,
+  showButtons: boolean
 }> = ({
   categories,
   category,
   setCategories,
   setFilteredCategories,
   snapshot,
-  setShowButtons
+  setShowButtons,
+  showButtons
 }) => {
   const [showDialog, setShowDialog] = useState<boolean>(false)
 
@@ -85,7 +87,12 @@ const Category: React.FC<{
     <>
       {showDialog && <Dialog closeFnc={hideDialogHandler} submitFnc={deleteCategory} />}
       <div className={Styles.category}>
-        <input className={`${Styles.title} ${!category.show && Styles.titleHidden}`} type="text" value={category.title} onChange={(event) => {updateCategoryTitle(event.target.value); setShowButtons(true)}} placeholder='Enter Category Name' />
+        <input
+          className={`${Styles.title} ${!category.show && Styles.titleHidden} ${showButtons && !category.title && Styles.titleWarning}`}
+          type="text" value={category.title}
+          onChange={(event) => {updateCategoryTitle(event.target.value); setShowButtons(true)}}
+          placeholder={showButtons && !category.title ? 'Please Enter Category Name' : 'Enter Category Name'}
+        />
         <div className={Styles.switcher} onClick={() => setShowButtons(true)}>
           <input className={Styles.checkbox} type="checkbox" name="show-category" id={category.id} checked={category.show} onChange={(event) => updateCategoryVisible(event.target.checked)} />
           <label className={Styles.label} htmlFor={category.id}></label>

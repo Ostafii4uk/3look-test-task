@@ -12,6 +12,7 @@ const Categories: React.FC<{}> = ({}) => {
   const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [showButtons, setShowButtons] = useState<boolean>(false)
+  const categoriesHasEmptyTitle = filteredCategories.some(categoryItem => !categoryItem.title)
 
   const searchCategories = (param: string) => {
     if (param === '') {
@@ -39,8 +40,8 @@ const Categories: React.FC<{}> = ({}) => {
     })
     response.json()
       .then(data => {
-        setCategories(data)
-        setFilteredCategories(data)
+        setCategories([...categories, data])
+        setFilteredCategories([...filteredCategories, data])
       })
   }
 
@@ -77,7 +78,7 @@ const Categories: React.FC<{}> = ({}) => {
 
     if (destination.droppableId === source.droppableId && destination.index === source.index) { return }
 
-    const updatedCategories = reorderCategory(categories, source.index, destination.index)
+    const updatedCategories = reorderCategory(filteredCategories, source.index, destination.index)
 
     setFilteredCategories(updatedCategories)
     setShowButtons(true)
@@ -105,7 +106,15 @@ const Categories: React.FC<{}> = ({}) => {
                   <Draggable draggableId={category.id} index={index} key={category.id}>
                     {(provide, snapshot) => (
                       <div className={Styles.categoryConteiner} ref={provide.innerRef} {...provide.draggableProps} {...provide.dragHandleProps}>
-                        <CategoryComponent categories={filteredCategories} category={category} setCategories={setFilteredCategories} setFilteredCategories={setFilteredCategories} snapshot={snapshot} setShowButtons={setShowButtons} />
+                        <CategoryComponent
+                          categories={filteredCategories}
+                          category={category}
+                          setCategories={setFilteredCategories}
+                          setFilteredCategories={setFilteredCategories}
+                          snapshot={snapshot}
+                          setShowButtons={setShowButtons}
+                          showButtons={showButtons}
+                        />
                       </div>
                     )}
                   </Draggable>
@@ -120,7 +129,7 @@ const Categories: React.FC<{}> = ({}) => {
       {showButtons &&
       <div className={Styles.buttonsWrapper}>
         <div className={Styles.buttons}>
-          <Button type='save' clickFnc={() => updateCategory()} />
+          <Button type='save' clickFnc={() => updateCategory()} disabled={categoriesHasEmptyTitle} />
           <Button type='cancel' clickFnc={() => {setShowButtons(false); setFilteredCategories(categories) }} />
         </div>
       </div>
