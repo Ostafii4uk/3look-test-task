@@ -28,20 +28,9 @@ export default function categoriesAPI (req: any, res: any) {
   }
   
   if (req.method === "PATCH") {
-    const udpatedCategory: Category = req.body
-    const updatedCategories = categories.map((category: Category) => {
-      if (category.id === udpatedCategory.id) {
-        return {
-          ...category,
-          show: udpatedCategory.show,
-          title: udpatedCategory.title
-        }
-      } else {
-        return category
-      }
-    })
+    const udpatedCategories: Category[] = req.body.categories
 
-    categories = updatedCategories
+    categories = udpatedCategories
     res.status(201).json(categories)
   }
   
