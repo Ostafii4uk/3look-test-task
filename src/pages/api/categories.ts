@@ -28,9 +28,27 @@ export default function categoriesAPI (req: any, res: any) {
   }
   
   if (req.method === "PATCH") {
-    const udpatedCategories: Category[] = req.body.categories
+    const udpdateCategories: Category[] = req.body.categories
 
-    categories = udpatedCategories
+    if (udpdateCategories.length !== categories.length) {
+      const udpdatedCategories = categories.map(categoryItem => {
+        const findedCategory = udpdateCategories.find(category => category.id === categoryItem.id)
+        if (findedCategory) {
+          return {
+            ...categoryItem,
+            title: findedCategory.title,
+            show: findedCategory.show,
+            isNotDelete: findedCategory.isNotDelete
+          }
+        } else {
+          return categoryItem
+        }
+      })
+      categories = udpdatedCategories
+    } else {
+      categories = udpdateCategories
+    }
+
     res.status(201).json(categories)
   }
   

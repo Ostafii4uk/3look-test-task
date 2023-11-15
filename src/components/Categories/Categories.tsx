@@ -12,9 +12,12 @@ const Categories: React.FC<{}> = ({}) => {
   const [filteredCategories, setFilteredCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [showButtons, setShowButtons] = useState<boolean>(false)
+  const [searchParam, setSearchParam] = useState<string>('')
   const categoriesHasEmptyTitle = filteredCategories.some(categoryItem => !categoryItem.title)
+  const isAvailableDraggable = categories.length === filteredCategories.length
 
   const searchCategories = (param: string) => {
+    setSearchParam(param)
     if (param === '') {
       setFilteredCategories(categories)
     } else {
@@ -60,6 +63,7 @@ const Categories: React.FC<{}> = ({}) => {
         setCategories(data)
         setFilteredCategories(data)
         setShowButtons(false)
+        setSearchParam('')
       })
   }
 
@@ -90,7 +94,7 @@ const Categories: React.FC<{}> = ({}) => {
 
   return (
     <>
-      <CustomHeader searchCategories={searchCategories} />
+      <CustomHeader searchCategories={searchCategories} searchParam={searchParam} />
       <div className={Styles.categories}>
         <div className={Styles.createButtonWrapper}>
           <Button type='create' clickFnc={createNewCategory} />
@@ -103,7 +107,7 @@ const Categories: React.FC<{}> = ({}) => {
               {!loading && !filteredCategories.length && <li>Categories not found</li>}
               {!loading && filteredCategories.map((category, index) => {
                 return (
-                  <Draggable draggableId={category.id} index={index} key={category.id}>
+                  <Draggable draggableId={category.id} index={index} key={category.id} isDragDisabled={!isAvailableDraggable}>
                     {(provide, snapshot) => (
                       <div className={Styles.categoryConteiner} ref={provide.innerRef} {...provide.draggableProps} {...provide.dragHandleProps}>
                         <CategoryComponent
@@ -114,6 +118,7 @@ const Categories: React.FC<{}> = ({}) => {
                           snapshot={snapshot}
                           setShowButtons={setShowButtons}
                           showButtons={showButtons}
+                          isAvailableDraggable={isAvailableDraggable}
                         />
                       </div>
                     )}

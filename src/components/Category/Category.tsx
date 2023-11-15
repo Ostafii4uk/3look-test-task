@@ -14,7 +14,8 @@ const Category: React.FC<{
   setFilteredCategories: Function,
   snapshot: DraggableStateSnapshot,
   setShowButtons: Function,
-  showButtons: boolean
+  showButtons: boolean,
+  isAvailableDraggable: boolean
 }> = ({
   categories,
   category,
@@ -22,7 +23,8 @@ const Category: React.FC<{
   setFilteredCategories,
   snapshot,
   setShowButtons,
-  showButtons
+  showButtons,
+  isAvailableDraggable
 }) => {
   const [showDialog, setShowDialog] = useState<boolean>(false)
 
@@ -98,7 +100,7 @@ const Category: React.FC<{
           <label className={Styles.label} htmlFor={category.id}></label>
         </div>
         {!category.isNotDelete && <Image className={Styles.deleteButton} src={deleteIcon} alt='delete-icon' onClick={() => showDialogHandler()} />}
-        <Image className={`${Styles.dragAndDropButton} ${snapshot.isDragging && Styles.dragAndDropButtonActive}`} src={dragAndDropIcon} alt='drag-and-drop-icon' />
+        {isAvailableDraggable && <Image className={`${Styles.dragAndDropButton} ${snapshot.isDragging && Styles.dragAndDropButtonActive}`} src={dragAndDropIcon} alt='drag-and-drop-icon' />}
       </div>
     </>
   )
