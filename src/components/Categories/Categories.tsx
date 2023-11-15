@@ -38,6 +38,7 @@ const Categories: React.FC<{}> = ({}) => {
   }
 
   const createNewCategory = async () => {
+    setLoading(true)
     const response = await fetch("/api/categories", {
       method: "POST"
     })
@@ -45,6 +46,7 @@ const Categories: React.FC<{}> = ({}) => {
       .then(data => {
         setCategories([...categories, data])
         setFilteredCategories([...filteredCategories, data])
+        setLoading(false)
       })
   }
 
@@ -119,6 +121,7 @@ const Categories: React.FC<{}> = ({}) => {
                           setShowButtons={setShowButtons}
                           showButtons={showButtons}
                           isAvailableDraggable={isAvailableDraggable}
+                          setLoading={setLoading}
                         />
                       </div>
                     )}

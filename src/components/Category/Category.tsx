@@ -15,7 +15,8 @@ const Category: React.FC<{
   snapshot: DraggableStateSnapshot,
   setShowButtons: Function,
   showButtons: boolean,
-  isAvailableDraggable: boolean
+  isAvailableDraggable: boolean,
+  setLoading: Function
 }> = ({
   categories,
   category,
@@ -24,7 +25,8 @@ const Category: React.FC<{
   snapshot,
   setShowButtons,
   showButtons,
-  isAvailableDraggable
+  isAvailableDraggable,
+  setLoading
 }) => {
   const [showDialog, setShowDialog] = useState<boolean>(false)
 
@@ -60,6 +62,7 @@ const Category: React.FC<{
   }
 
   const deleteCategory = async () => {
+    setLoading(true)
     const response = await fetch("/api/categories", {
       method: "DELETE",
       headers: {
@@ -74,6 +77,7 @@ const Category: React.FC<{
         setCategories(data)
         setFilteredCategories(data)
         hideDialogHandler()
+        setLoading(false)
       })
   }
 
