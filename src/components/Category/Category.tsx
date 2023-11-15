@@ -40,7 +40,7 @@ const Category: React.FC<{
       }
     })
 
-    setCategories(updatedCategories)
+    setFilteredCategories(updatedCategories)
   }
 
 
@@ -56,7 +56,7 @@ const Category: React.FC<{
       }
     })
 
-    setCategories(updatedCategories)
+    setFilteredCategories(updatedCategories)
   }
 
   const deleteCategory = async () => {
@@ -69,10 +69,12 @@ const Category: React.FC<{
         id: category.id,
       })
     })
-    const categories = await response.json()
-    setCategories(categories)
-    setFilteredCategories(categories)
-    hideDialogHandler()
+    response.json()
+      .then(data => {
+        setCategories(data)
+        setFilteredCategories(data)
+        hideDialogHandler()
+      })
   }
 
   const showDialogHandler = () => {

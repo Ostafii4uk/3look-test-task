@@ -113,7 +113,7 @@ const Categories: React.FC<{}> = ({}) => {
                         <CategoryComponent
                           categories={filteredCategories}
                           category={category}
-                          setCategories={setFilteredCategories}
+                          setCategories={setCategories}
                           setFilteredCategories={setFilteredCategories}
                           snapshot={snapshot}
                           setShowButtons={setShowButtons}
