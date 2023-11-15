@@ -15,7 +15,7 @@
   background: #884DFE;
 }
 
-.create:hover {
+.button:not(.disabled).create:hover {
   background: linear-gradient(#A139FD, #50BDFC);
 }
 

@@ -99,7 +99,7 @@ const Categories: React.FC<{}> = ({}) => {
       <CustomHeader searchCategories={searchCategories} searchParam={searchParam} />
       <div className={Styles.categories}>
         <div className={Styles.createButtonWrapper}>
-          <Button type='create' clickFnc={createNewCategory} />
+          <Button type='create' clickFnc={createNewCategory} disabled={loading} />
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId='categories-list'>
