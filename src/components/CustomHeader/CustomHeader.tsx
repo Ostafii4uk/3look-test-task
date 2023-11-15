@@ -3,7 +3,7 @@ import Image from 'next/image'
 import logoIcon from '../../../public/assets/svgs/logo.svg'
 import { useState } from 'react'
 
-const CustomHeader: React.FC<{searchCategories: Function}> = ({searchCategories}) => {
+const CustomHeader: React.FC<{searchCategories: Function, searchParam: string}> = ({searchCategories, searchParam}) => {
   const [isActiveSearch, setIsActiveSearch] = useState<boolean>(false)
 
   return (
@@ -14,7 +14,7 @@ const CustomHeader: React.FC<{searchCategories: Function}> = ({searchCategories}
           <h2 className={Styles.title}>Memes</h2>
         </div>
         <div className={`${Styles.search} ${isActiveSearch && Styles.searchMobile}`} onClick={() => setIsActiveSearch(true)}>
-          <input type="text" className={Styles.inputSearch} onBlur={() => setIsActiveSearch(false)} onChange={(event) => searchCategories(event.target.value)} placeholder='Search' />
+          <input type="text" className={Styles.inputSearch} value={searchParam} onBlur={() => setIsActiveSearch(false)} onChange={(event) => searchCategories(event.target.value)} placeholder='Search' />
         </div>
       </div>
     </div>
